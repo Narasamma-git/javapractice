@@ -1,0 +1,331 @@
+	
+
+				Angular
+* Angular is typescript based open source front end platform that makes it easy to build applications with in web/mobile/desktop.
+* The major features of this framework such as declarative templates, DI(dependency Injection), end to end tooling, and many more 
+  other tools are used to ease the development.
+* Angular is opensource and is maintained by Google.
+
+
+		Introduction and version history
+* Angular is a platform and framework for building client side front end applications in HTML and TypeScript.
+* Angular is written in typescript language.
+* Angular9 is released on 7th FEB 2020
+* Angular9 nativey supports Ivy Engine.
+* Support Bazel script 
+* Developed and maintained by Google
+
+Angular9 features:
+
+
+	1) Angular9 nativey supports Ivy Engine
+	2) Smaller builds (builds are relatively smaller and increase the performance of the application)
+	3) Modular application
+	4) Speed and performance
+	5) Cross platform-Mobile,wen and Deskop
+	6) single page application
+	7) Typescript language(angular9 written in typescript)
+
+
+Angular
+.  major release -->every 6 months
+.  minor release--->1-3 moinor releases for reach major releases
+.  patch-->patches are frequent released/week/bi-weekly(just bug fixes)
+
+
+Angular versions:
+1) Angular2 ->2016
+2) Angular4 ->APR 2017
+3) Angular5 ->Nov 2017
+4) Angular6 ->March 2018
+5) Angular7 ->OCT 2018
+6) Angular8 ->May 2019
+7) Angular9 ->07th Fen 2020
+
+
+How to upgrade to version9
+
+1->ng update @angular/cli@8 @angular/core@8
+2->ng update @angular/cli @angular/core (by running this command we can use latest angular version)
+
+How to check angular version
+ng --version
+and see package.json
+
+Angular9 Install and Run Angular app
+1. Operating System(windows/linux/Mac)
+2. NodeJS -Node.JS is an open source, cross platform JS runtime environment
+3. NPM-Node Package Manager for JS programming language.Is automatically installed with node.js
+4. Visual Code Studio-code editor
+ANgular CLI(CommandLine Interface) using which we can easily generate various peices of angular
+
+How to install angular
+----------------------
+npm install @angular/cli --g       g-->globally
+
+how to generate angular application
+
+ng new projectname
+
+how to run angular application
+
+
+first we have to be in the angular project cd .\project name\
+ng serve
+
+we can also pass port no    ng serve --port=4300 like this(we can give any numeric numbers 10,500 etc )
+Typescript is converted into js internally
+
+Installing bootstrap in angular9
+
+1 npm install bootstrap  (if we want perticular version npm install bootstrap@4.1 like this)
+2 import the framework into our style.css file
+
+Folder Structure and bootstrap process
+------------------------------
+
+
+1.e2e
+	-end to end  test scripts will be residing
+	-protractor framework is used to run end to end tests.
+Jasmine and karma runner
+	-app.po.ts -> Protractor file which will have "po" files
+	-app.e2e-spec.ts file
+		.e2e-it tells that this script is end to end functional test script
+		.spec-whenever you spec added-that means it is a test script
+
+2. ng_modules
+	- this is the folder where all modules and libraries reside
+	- npm i bootstrap ->
+	  add/remove modules/packages
+	-we will not touch this folder for development purpose
+3.src	-this is the main workarea/app code  resides inside this folder
+	- this is the basic structure
+    >app	
+	  -This is the place where you will see components,modules,services,directives,pipes etc
+	  -->app.component.ts [where you see component -it means that file corresponds to a component]
+	 --->app.module.ts [it means this is a module]
+	  -->app.service.ts [it means these are service files]
+	  -->app.component.spec.ts[it means these are unit test scripts]
+    >assets
+	    -styles
+	    -icons
+	    -imgs
+    >environments
+	 -here we will configure variables or pipeline for dev, tet, stage and prod
+    -polyfills -if the user  browser is outdated one -polyfills will add ES6 functionality backward compatible
+-------------------------------------------------------------------------------------------------------------------------
+booting process
+    -Maint.ts [booting the angular application]
+	-this is the first file that angular will check to load how to start an angular application
+        -we need atleast one module to be present in our main.ts
+        -by default the module that is in  the main.ts is AppModule
+	-bootstrapModule is the one which starts the application
+	-this is not related to bootstrap frameworknat all there is no relation
+-We can change the default module with something else
+-We can write custom module and then loaded into bootstrap module
+    -test.ts 
+      -test script for booting process
+      -all the code inside main.ts testedv here in this file
+-----------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------
+    >styles.css[global style sheet]
+       -->dont make heavy
+       -->generic/typography,fonts,generic classes
+
+4.angular.json
+	-this is the file for configuration for all the configuration  of our angular projects
+5.karma.conf.js
+      -karma runner for running our unit test scripts 
+      -configure our test script
+6. tsconfig.json[build and compilation realated to our angular application]
+7. tslint.json -linting or coding standards
+-----------------------------------------------------------------------------------------------------------------------------------
+8.package.json
+   "dependencies":{
+"@angular/animation":"~9.1.6"   it will always have 3 values (major version,minor version,patch)
+
+}	
+
+9.package-lock.json ang package.json:
+
+	1. You will script commands-which are very usefull in your build command
+	2. to understand any existing angular application-always refer to package.json to see the script
+	3. It will have dependencies and devdependencies
+	4. package-lock.json will resolve all the required sub modules  
+	
+       
+			ANGULAR CLI
+1. What is Angular CLI?
+2. What can we do with Angular CLI?
+3. How Angular CLI helps Developers/QA teams
+4. How to use CLI for auto generation
+5. Frequently used commands
+
+
+
+Angular CLI commands
+
+	1. ng --version
+	2. ng generate component  component_name(ng g c component_name)
+	3. ng generate service service_name(ng g s service_name)
+	4. ng serve
+		-used for transpiling/compiling our application(ts will convert to js and compile successfully)
+		-by default it uses 4200 port
+		-ng serve --port=4300
+		-production -Ahead of time is by default for prod
+	5. ng test
+		- will run all our unit test
+	        - test are run using karma runner
+		- unit test are written using jasmine framework
+	6. ng e2e 
+		-it will run all our e2e tests.
+		-e2e-spec.e2e  ->these are e2e test scripts.
+		
+	7. ng update
+		-If you are running on version than current bersion
+	8. ng build
+		- build and generate the output of your application
+		- compiled javascript code
+		- this is mainly used for promoting code to high env
+	9. ng lint
+		-code syntaxt linting
+		- set rules for how code should be writen
+			-coding standards
+		-it following the coding standards
+
+			Angular Modules
+
+* Modules in Angular are logical functionality
+* modules can have components,services,directives,pipes etc
+	-all are related to a perticular functionality
+* plug and play futures
+* it allows to be modular, easy to maintain, easy to debug, it reduces the app footprint
+		-if you are on a page which does not need a module -simply dont load it
+* by default -every angular app has 1 module atleast
+	-called as Appmodule		-
+	built in module BrowserModule,NgModule
+* We need to import required modules from core packages
+* every module needs to be define by @NgModule
+* We can declare components we need
+* imort other modules inside a module
+* which is the default component to load	
+
+			DECORATORS
+* Decorators in Angular:
+			1. TypeScript feature used for passing meta data
+			2. Decorators are functions that will return functions
+			3. Decorators are invoked at run time
+			4. Decorators allow us to invoke functions
+* Types of decorators in Angular
+			1. Class decorators -->@NgMoule,@Component
+			2. Property Decorators -->@Input,@Output
+			3. Method Decorators -->@HostListener
+			4. Parameters decorators -@Inject
+	starts with @ symbol
+	.Examples @NgModule,@Component
+* All  decorators in Angular are represented with @symbol
+ 	@NgModule,@Component,@Injectable
+* Define class decorators, input decorators etc
+* Thses decorators have meta data
+	- has specific meta data
+	- some are mandatory some are optional
+@HostListeners->event decorators
+
+		Components
+* Components in Angular
+* Importance of Component
+* AppComponent
+* How to generate custom component
+What is component:
+
+* Component is smaller functionality which can be resused  multiple times in the application.
+* Smaller feature inside a bigger functionality
+e.g  Authentication  ->bigger component
+       ->login-component
+	->forgot-password-component
+	->register-component
+	->authenticate all the above are smaller components
+* Allow in easy maintanance and faster development
+* Tree Heirarchy
+	is made up of components
+	parent
+	child1,chil2 ...
+* plug and play the components wherever we need
+
+
+Flow of angular execution
+1. When we run the angular project, first it will go to main.ts,there [bootstrapModule(AppModule)] 
+   AppModule will load first.Then inside Appmodule 
+
+appcomponent is the single most important component	
+	-is provide
+app.module.ts
+==============
+	providers: [],
+	 bootstrap: [AppComponent]
+The first component it has to load is AppComponent
+appcomponent is single most important 
+	-is provided by default
+	-in the index.html file -we see the selector name<app-root>
+Each componet will have 3 important things
+1. selector
+2. templateUrl or template
+3.stylesUrl
+
+Its good practice to use templateUrl and not template because code will be bettre organized and easy to maintain.
+
+app.component.ts
+================
+template url:
+
+index.html
+===========
+<app-root>
+the first component is appcomponent
+
+You can have component inside components
+----------------------------------------
+But where you will create component is important
+then create another component ng g c subComponent
+If we do not specify the path defaultly it will create under app
+the parent module will be updated accordingly
+to call sub components we will use selector and call the element
+
+Asssume we have ToDoComponent
+i want to create another component inside this
+in terminal specify the path :cd .\src\app\todo
+We can include a component from other module into appModule or any module
+  
+
+		Directives   
+There are 3 types of directives:
+ 1. Component directive
+			* Every Angular application must have atleast 1 component
+			* Have its own template
+			* Events attached 
+
+	
+ 2. Structural directive
+			* Update Structure of the view
+			* ngFor, ngIf and    ngSwitch
+ 3. Attribute directive
+			* ngStyle,ngClass
+Componenet directive:
+			Coponent is a type of directive
+			It has its own template
+			
+Structural Directives:
+			These directive alter the structure of the template
+			ngFor,ngIf,ngSwitch
+			for loop we can iterate over a set of data and do some opearation
+4. generate custom directive:
+		adding power and extending our application
+		ng generate directive<directive_name>
+
+			Ngif-Else
+* ngIf
+* mgIf with Else statement
+* ngIf with Then and Else statement
+
+ ngIf->is built in structural directive that can add or remove elements

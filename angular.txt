@@ -1,0 +1,7 @@
+					ANGULAR
+
+HttpClient:
+==========
+An Angular service is simply a TypeScript class that you can inject in other services 
+or components using the Angular dependency injector.
+ 
