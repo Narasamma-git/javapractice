@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"	
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+    
+    <bean class="com.technoelevate.SpringCore.ReferenceTypeInjection.Address" name="ajayAddress">
+    	<property name="street" value="Shah_bazar"/>
+    	<property name="city" value="KalaBurgi"/>
+    	<property name="state" value="Karnataka"/>
+    	<property name="country" value="Afganistan"/>
+   
+    </bean>
+    
+    
+    <bean class="com.technoelevate.SpringCore.ReferenceTypeInjection.Address" name="manjuAddress">
+    	<property name="street" value="Lingsur"/>
+    	<property name="city" value="Raichur"/>
+    	<property name="state" value="Karnataka"/>
+    	<property name="country" value="Uganda"/>
+   
+    </bean>
+    
+    <bean class="com.technoelevate.SpringCore.ReferenceTypeInjection.Person" name="person1">
+    	<property name="name" value="Ajay"/>
+    	<property name="age" value="35"/>
+    	<property name="address" >
+    		<ref bean="ajayAddress"/>
+    	</property>
+    </bean>
+    
+        <bean class="com.technoelevate.SpringCore.ReferenceTypeInjection.Person" name="person2">
+    	<property name="name" value="Shree Manju"/>
+    	<property name="age" value="16"/>
+    	<property name="address" ref="manjuAddress"/>
+    </bean>
+    
+</beans>
