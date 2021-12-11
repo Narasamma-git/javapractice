@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context-3.0.xsd
+http://www.springframework.org/schema/mvc
+http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+
+<bean id="internal1" class="com.technoelevate.internalproject.list.InternalProject">
+<property name="list">
+<list>
+<value>name</value>
+<value>age</value>
+<value>salary</value>
+</list>
+</property>
+
+<property name="data1">
+<list>
+<value>A</value>
+<value>23</value>
+<value>15000</value>
+</list>
+</property>
+
+<property name="data2">
+<list>
+<value>B</value>
+<value>24</value>
+<value>25000</value>
+</list>
+</property>
+
+</bean>
+
+</beans>
