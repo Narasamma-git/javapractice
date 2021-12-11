@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context-3.0.xsd
+http://www.springframework.org/schema/mvc
+http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+
+<bean class="com.technoelevate.autowiringbyname.Address" name="address1">
+<property name="street" value="Vinayaka nagara"/>
+<property name="city" value="siruguppa"/>
+<property name="district" value=""/>
+<property name="state" value="Karnataka"/>
+<property name="country" value="India"/>
+</bean>
+
+<bean class="com.technoelevate.autowiringbyname.Address" name="address2">
+<property name="street" value="Parvathi nagara"/>
+<property name="city" value="siruguppa"/>
+<property name="district" value=""/>
+<property name="state" value="Karnataka"/>
+<property name="country" value="India"/>
+</bean>
+
+<bean class="com.technoelevate.autowiringbyname.Address" name="address3">
+<property name="street" value="Bhuvaneswari nagara"/>
+<property name="city" value="Katriguppe"/>
+<property name="district" value="Bangalore"/>
+<property name="state" value="Karnataka"/>
+<property name="country" value="India"/>
+</bean>
+
+<bean class="com.technoelevate.autowiringbyname.Address" name="address4">
+<property name="street" value="Vijaya nagara"/>
+<property name="city" value="Vijayanagara"/>
+<property name="district" value="Bangalore"/>
+<property name="state" value="Karnataka"/>
+<property name="country" value="India"/>
+</bean>
+
+<bean class="com.technoelevate.autowiringbyname.Student" name="student1">
+<property name="regno" value="1"/>   
+<property name="name" value="Narayan"/>
+<property name="collage" value="RYMEC"/>
+
+<property name="address">
+<list>
+<ref bean="address1"/>
+<ref bean="address2"/>
+</list>
+</property>
+
+<property name="mob" value="9901711569"/>
+</bean>
+
+
+<bean class="com.technoelevate.autowiringbyname.Student" name="student2">
+<property name="regno" value="2"/>   
+<property name="name" value="Anil Maradimath"/>
+<property name="collage" value="BITM"/>
+<property name="address">
+<list>
+<ref bean="address3"/>
+<ref bean="address4"/>
+</list>
+</property>
+<property name="mob" value="7676059956"/>
+</bean>
+
+
+<bean class="com.technoelevate.autowiringbyname.Faculty" name="faculty1">
+<property name="fid" value="101"/>
+<property name="fname" value="Manjula"/>
+<property name="student">
+<list>
+<ref bean="student1"/>
+<ref bean="student2"/>
+</list>
+</property>
+</bean>
+
+</beans>
