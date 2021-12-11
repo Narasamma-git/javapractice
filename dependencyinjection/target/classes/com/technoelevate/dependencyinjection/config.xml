@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context-3.0.xsd
+http://www.springframework.org/schema/mvc
+http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+
+
+<!--  <bean name="address1" class="com.technoelevate.dependency.Address">
+<property name="city" value="Siruguppa"/>
+<property name="state" value="Karnataka"/>
+</bean> --> -->
+
+<!--   <bean name="address2" class="com.technoelevate.dependency.Address">
+<property name="city" value="Chittur"></property>
+<property name="state" value="Andrapradesh"/>
+</bean>  -->
+
+<!--  <bean name="person1" class="com.technoelevate.dependency.Person">
+<property name="name" value="Nayana"/>
+<property name="address">
+<list>
+<ref bean="address1"/>
+<ref bean="address2"/>
+</list>
+</property>
+</bean> -->
+<bean name="addressc1" class="com.technoelevate.dependency.Address">
+<constructor-args value="Sirsi" type="String "/>
+<constructor-args value="Karnataka" type="String"/>
+</bean>
+
+<bean name="addressc2" class="com.technoelevate.dependency.Address">
+<constructor-args value="Mangalore" type="String "/>
+<constructor-args value="Karnataka" type="String "/>
+</bean>
+
+<bean name="personc1" class="com.technoelevate.dependency.Person">
+<constructor-args value="Narasamma" />
+<constructor-args>
+
+<ref bean="addressc1"/>
+</constructor-args>
+</bean>
+</beans>
