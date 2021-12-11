@@ -1,0 +1,322 @@
+TypeScript:
+
+TypeScript is a superset of Javascript which means everthing we have in JavaScript we have it in TypeScript and on top of that we have some 
+additional functionalities and features we can take advantages of while using TypeScript.
+It is a programming language building on the top of JavaScript.
+
+There is a disadvantage: Browsers can't execute Typescript unlike the JavaScript which can be understood and executed by a browser.
+
+Where does that leaves us? Ts is a better version of JavaScript but we can't use it? Well not quite, TypeScript is a programming language 
+but its also is a tool. Its has a powerful compiler which we run over our code to compile TypeScript code into JavaScript. Hence at the end 
+after the compilation we will get a JavaScript code which we would have written in TypeScript with all the features and advantages. Hmmm How?
+
+Well the TypeScript compiler compiles these new features to JavaScript workarounds. For eg: TypeScript will give a nicer syntax or an easier 
+way of doing something which might required a complex code snippet in JavaScript if written manually. Now the compiler is smart enough to convert 
+this easy TypeScript feature to a more complex code in JavaScript.
+
+Key Difference between JavaScript and TypeScript: Js uses "Dynamic type"(Resolved at run time) and Ts uses "Static Type"(Resolved during the development)  
+
+Lets look this from a better prespetive. To do that lets analyse a piece of code in JavaScript:
+
+function add(num1,num2){
+return num1+num2;
+}
+console.log(add('1','2'))
+
+It is pretty clear from the method that the motive behind writing the above function is to add two numbers and get sum as a result.
+ However, if we turn our attention to the calling of this function, the JavaScript accepts the two given string argument 
+as valid input and returns the result as 12 instead of 3. There is no compilation error or run time error however it is a 
+logical error in the developer part. This problem can be taken care in the javaScript using mitigating stratergies but
+ for that we need to write extra lines of code however, in TypeScript we can mitigate this problem pretty easily.
+
+Installing TypeScript:
+    
+1. Head to https://www.typescriptlang.org/download and now we will need to install using the npm: npm install typescript --save-dev . 
+But even before doing that we need to install Node.js which will give us the capacity to install TypeScript using NPM.
+2. Now lets headover to https://nodejs.org/en/ and download the latest version of node.js
+3. Once the Node.js is downloaded, install it directly in your laptop. Now it will by default open a terminal 
+where we can run the npm command(npm install typescript --save-dev )then enter.
+
+
+4. After running the command it will install the TypeScript globally on your laptop.
+ What does it mean TypeScript installed? Well remember TypeScript is a programming language but it also is a compiler which converts TypeScript to JavaScript. 
+So what we have installed is also a compiler and a tool which is capable of understanding TypeScript code and to convert the respective 
+TypeScript code to JavaScript code.
+
+Once installed we can create a file in our project with the extension .ts and copy our code from Js file to this ts file and 
+immediately we will see all red lines pointing out errors.
+
+
+Working with Types:
+
+Core Syntax & Features:
+
+--------------------------Primitive types & type inference------------------
+TypeScript provides many types to JavaScript and also allows us to create our own types. Lets start with some of the core types the JavaScript 
+already knows and the TypeScript also support.
+
+Core Types:
+
+number: All number format irrespective of decimal or not.
+string: text within '',"".``
+boolean: true/false
+
+Lets try to analyse these types from the TypeScript point of view:
+
+function add(n1: number, n2: number, showResult:boolean,phrase:string) {
+  if (showResult) {
+    console.log(`${phrase}${n1+n2}`);
+  } else {
+    let output = n1 + n2;
+    let printOutput = document.getElementById("result")! as HTMLInputElement;
+    printOutput.innerHTML=`${phrase}${String(output)}`;
+  }
+}
+
+const number1 = document.getElementById("num1")! as HTMLInputElement;
+const number2 = document.getElementById("num2")! as HTMLInputElement;
+let printResult = true;
+let resultPhrase = "The result is: ";
+
+// const result = add(number1,number2);
+// console.log(result);
+
+
+function addNumber(){
+  add(+number1.value, +number2.value, printResult,resultPhrase);
+}
+
+
+The keyword we have provided(:number/:boolean/:string) these keywords are not understood by Js hence if we explore the js file, we will
+ not find these keyword there. 
+It is understandable by Ts which while writing the code to a JS file removes such keywords from the JS file.
+
+Now there might be a question, why do we only have the above keyword (:number/:boolean/:string) while taking the parameter not while intialization, 
+that is because of a feature we have in TS called as inference. The Ts does a very good job in looking at the RHS of the initialization and deciding
+ the type of the variable hence we don't need to mentioned it over there. On the other hand in the parameters it is dependent on the value that is
+ being passed to it hence we need to control and decide what kind of data can be passed into the function.
+
+Bottom Line: If we are doing  an instante initialization we don't need to mention the type but if not then it is recommended to provide the type.
+Eg:
+
+let number1= 5 // I don't need to provide the keyword
+let number1; //Here I should mention the type if our intention is to assign a number to  number1
+number1=5;
+
+Note: If we have already infered a variable with a certain type and it is there standing somewhere in our code then we will not be allowed to change the
+ value of that variable with a different type. We can change the value but it has to be of the infered type of the variable.
+
+
+--------------------------Object types & type inference------------------
+
+Lets look at this example:
+const person={
+    name:"Jeigyanshu",
+    age:30
+}
+
+console.log(person.nickName);
+1. If we try to log nickName, the tool tells at me saying there is no such property by key "nickName" which is absolutely correct. 
+Now lets try to look at the object and its properties a little closer. If I hover the mouse over the name of the object(person in this case), 
+I will get to see the actual structure of the object. This is how my object person is now inferred.
+
+2. There is more of a generic type called as object and if I declare the type of the person to be object, then I wont be able to access the properties 
+which are mentioned inside the person Object.
+Eg: const person:object={
+    name:"Jeigyanshu",
+    age:30
+}
+
+console.log(person.name);
+
+If I run the above code I will get an error because the compiler is looking for person.name which is of a String type but if we hover
+ over the person(96) in this case it will show me object type which doesn't match any types. Hence we should go for something like below:
+
+const person:
+{name:string;
+age:30}={
+    name:"Jeigyanshu",
+    age:30
+}
+
+
+console.log(person.name);
+
+or
+
+const person:
+{name:string;
+age:30;
+hobbies:string[]
+}={
+    name:"Jeigyanshu",
+    age:30,
+    hobbies:['fifa','badminton']
+}
+
+console.log(person.name);
+for(const hobby of person.hobbies){
+    console.log(hobby.toUpperCase());
+}
+
+
+Tuple: Fixed length array with predefined datatype.
+const person:
+{name:string;
+age:30;
+hobbies:string[]
+role:[number,string]
+}={
+    name:"Jeigyanshu",
+    age:30,
+    hobbies:['sports','cooking'],
+    role:[2,"Developer"]
+}
+
+for(const hobby of person.hobbies){
+    console.log(hobby.toUpperCase());
+}
+
+for(const role of person.role){
+    console.log(role);   
+}
+
+How is it different from array?
+
+In this case I can only assign 2 values to role key which has to match the type we have mentioned while defining the types.
+ Hence as a developer it is my responsiblilty to metion the type explicitly else it will be infered as an array of a certain type and 
+then we could make all sort of operations inside the same. role:[number,string]
+
+In tuple, length support is provided that is I may not be allowed to add more than which has been declared while defining the tuple.
+
+Note:The TS is not able to catch the push method hence it is an exception and we need to take special care while using it if at all required.
+
+Enum: Human redable mapped value.
+syntax:
+enum ROLE {DEV,TESTER,DBA}
+
+Eg:
+enum ROLE{DEV="dev",TESTER,DBA};
+
+let ammAdmi={
+    name : "Jeigyanshu",
+    age:45,
+    hobbies:['sports','cooking'],
+    role:ROLE.DBA
+
+};
+
+function roleCheck(){
+    if(ammAdmi.role==1){
+        console.log(`${ammAdmi.name} is a developer`);
+        
+    }
+}
+
+roleCheck();
+
+In this case please take a look at line number 177 here I am comparing the role with a number because while declaring the enum ROLE, 
+the numbers were by default assigned to the respective members inside the curly braces starting with 0. We can customize it as per our requirement.
+
+--------Union Types------
+If we want to be a little more flixible rather than sticking to 1 type per variable then we should go for union type where it
+ allows to have more than 1 type to a particular variable. Here is how we can do it:
+
+
+function combine(input1:string|number,input2:string|number){
+
+    let result;
+
+    if(typeof input1==='number' && typeof input2==='number'){
+        let result = input1+input2;
+    }else{
+        result=input1.toString()+input2.toString();
+    }
+    return result;
+}
+
+let combineAges = combine(23,24);
+console.log(combineAges);
+
+let combineNames = combine("Jeigy","Anshu");
+console.log(combineNames);
+
+
+Function Type:
+In TS we can see the return type of a function and it is decided by the output datatype of the return statement. Lets consider this below example:
+
+Case1:
+function add(n1:number,n2:number){
+    return n1.toString()+n2.toString();
+}
+
+* The return type is string
+
+Case2:
+function add(n1:number,n2:number){
+    return n1+n2;
+}
+
+Note: Don't get confused with the input parameter datatype and the output data type. The input parameter is forcing me to provide the
+ data in number format, but once I get the required data, I can make any sort of operation inside the function and get the desired output.
+
+Having said that, if I want to force the function to return a specific return type in that case I need mention the same right after the parameter. 
+Once done we have to write the code in a fashion that the return statement should always produce the given type.
+
+In JS we don't have any void type however in Ts we do have void.
+function add(n1:number,n2:number):number{
+    return n1+n2;
+}
+
+function printResult(num:number){
+    console.log("Result is "+num);
+}
+
+printResult(add(3,4));
+
+Further:
+function add(n1: number, n2: number): number {
+  return n1 + n2;
+}
+
+let combineValue; // The type is "any"
+combineValue = add;//The type here is "any as well
+combineValue = 34;//type is "number"
+console.log(combineValue(3,5)); //Since we are passing a number as a variable which again accepts 2 parameter is why it will give us an error in the run time.
+
+Hence to overcome this we can modify line 245 to below:
+
+let combineValue:Function; 
+
+While this would work if we provide the right function however, it might fail if we provide a different function altogeather which is does not have the required signature. Hence we can make use of the Function Type to this as below:
+
+let combineValue:(a:number,b:number)=>number
+
+In line number 256 we are fixating the function which accepts 2 numeric parameter as argument and returns a numeric output.
+
+Eg: 
+
+function addAndHandle(n1:number,n2:number,cb:(result)=>void){
+    const result = n1+n2;
+    cb(result);
+}
+
+
+addAndHandle(23,7,(result)=>{
+    console.log(`output is : ${result}`);
+    
+})
+
+In the above code in line 262, cb is the callback parameter and (result)=>void is the type of the function.
+ Moreover while calling the function addAndHandle we need to pass 3 parameter which includes a function hence we can
+ simply write an annonomyous function right inside the parenthesis.
+
+
+
+WatchMode:
+1. While compiling we add more to the command : tsc app.ts --watch or tsc app.ts -w
+
+This will make sure that after every changes we make it will compile on its own rather than we have to compile it ourself. If we are using the live server because of that it will also automatically reload the browser.
+
+2. What if there are multiple TS files? In that case we need to configure the project in a folder and it is a one time process.
+ Once this is done then any changes made to any of the TS file in that project will be compiled automatically.

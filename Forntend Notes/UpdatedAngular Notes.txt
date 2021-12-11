@@ -1,0 +1,885 @@
+`<h2>{{title1}}</h2>
+                  <ul>
+                    <li *ngFor="let myCourse of courses">{{myCourse}}</li>
+                  </ul>  
+                  <img [src]="imageUrl"/>
+
+                  <table>
+                    <tr>
+                        <td [attr.colspan]="colspan"></td>
+                    </tr>
+                  </table>
+                  <button class="btn btn-primary">Save</button>`
+
+
+Angular:
+The Angular is a development platform for building a Single Page Application for mobile and desktop. 
+It uses Typescript & HTML to build Apps. The Angular itself is written using the Typescript
+It now comes with every feature you need to build a complex and sophisticated web or mobile application.
+It comes with features like component, Directives, Forms, Pipes, HTTP Services, Dependency Injection, etc
+
+Why Angular?
+We can build applications using Vanilla JavaScript, however as our application grow bigger it becomes tough to maintain the code 
+not to mention the complexity we will run into managing the expectation of the application(requirements)
+
+It is also worth mentioning that applications built with Vanilla JavaScript are hard to test,
+ which is why over the years there are a lots of different frameworks has been developed to mitigate these issues and Angular is one of them.
+
+1. It gives our application a clean structure(Easy to understand and easy to maintain)
+2. It includes a lot of utility code(reusable codes) in various application especially dealing with user navigation and browser history
+3. Application built with Angular it is easier to test.
+
+
+Architecture:
+
+Front End: Developed using HTML, CSS,TypeScript,Angular( UI,presentation layer)
+Back End: API or endpoints accessible via HTTP protocol.
+
+Hence we can make HTTP calls from frontend application to the backend application to get or save the data.
+
+Angular Version:
+1. The early version of the Angular was named as Angular 2. Then later it was renamed to just Angular.
+2. Then Angular Team releases new versions of the Angular versions Regularly 
+3. The Angular 9 is released on 06.02.2020. The Angular 9 is a major release. This release switches to ivy compiler 
+and runtime by default. The ivy brings smaller bundle sizes, faster & better testing debugging, Improved type checking, build times, etc
+4. The last stable version that is available in Angular 10.0.12
+
+Overview:
+Angular 	Version	Date	Description
+Angular 2	14.09.2016		Initial Version of Angular
+Angular 4	23.03.2017		Version 4
+Angular 5	11.11.2017		Version 5
+Angular 6	03-05-2018		Version 6
+Angular 7	18-10-2018		Version 7
+Angular 8	25-08-2019		Version 8
+Angular 9	06-02-2020		Version 9
+Angular 10	24-06-2020		Version 10
+Angular 10.0.12	24-08-2020	Version 10.0.12
+
+
+Prerequisites:
+1. The Angular tutorial requires a working knowledge of Javascript, HTML & CSS. It also requires the concept of OOPs.
+2. We are going to use Typescript as our language. 
+
+SetUp:
+1. Install nodejs( https://nodejs.org/en/ )
+2. Once we have node installed we will make use of a tool called Node Package Manager(NPM) to install thrid party library.
+ We will use NPM to install Angular CLI(used to create a new Angular project)
+3. In the terminal run the command : npm install -g @angular/cli (-g is for global so that it can be accessed anywhere)
+4. To check if it is installed type: ng --version
+5. Create new project: ng new hello-world
+6. While creating it might ask which stylesheet to use, make use of the arrow key to select CSS and hit enter.
+7. Make sure to add the vs code to the path so that we can easily open it in terminal
+8. In windows press shift+ctrl+p(This opens the command pallet), now type code and when you get the option install code to path click on it.
+9. Now we can go to the terminal and type code . this will open the newly created project in the vs code
+
+Understanding the project structure:
+e2e: This is where you write your end to end test for our application. These are basically automated test simulating a real user. 
+Write code to open a browser, fill out a form login, logout etc.
+
+node_modules: This is where we store all our third party library our application may depend upon.
+ This folder is purely for development so when we compile our application parts of this thrid party lib are put in a bundle and deploy in our application
+
+src: This is where we have the source code of our application. 
+
+1. Under this application we have an app folder and we will notice there is a app.module.ts file and 3 different app.component files(css,html,specs.ts)
+Note: Every application has atleast one module and 1 component.
+
+2. Below this we will find assets folder: If we have any image file, text file icons etc. goes here.
+
+3. environments: This is where we store configuration settings for different environments. By default we will have 1 file for production 
+another for development environment
+
+Other files we have are favicon.ico: icon displayed in the browser. 
+index.html: very simple basic html file. initally we will not have any refrences to any of the stylesheet or js files.
+ The refrences will be dynamically inserted into this page and we will see how.
+main.ts: This is the starting point of the application. we are bootstraping the main module of our application which 
+in this case is AppModule. Hence Angular loads this module and everything starts from there.
+
+Outside src:
+package.json: Standard file every node project has. Aprat from the basic settings we have the Dependencies that our
+ application is dependen upon. There is a devDependencies which we need to develop the application not to run it in the production environment.
+
+
+tsconfig.json: Has a bunch of settings for your TS compiler 
+tslint.json: static analysis tool for ts code which checks for readability, maintainbility and functionality errors.
+
+This is a basic structure of an Angular project
+
+Fundamentals of Angular:
+
+Building blocks of Angular:
+1. Components
+2. Templates
+3. Directives
+4. Services
+
+1. Component: 
+Components, in fact, in a real world app we have tens or hundreds of Components. But what is a Component? 
+A Component encapsulates the data, the HTML markup, and the logic for a view (which is the area of the screen the user sees).
+
+Let's look at the real world example. Imagine we're going to build a website like YouTube. So on this page we
+have a search bar, a side panel, and an area to play our videos. Now we can think of all this as one view, or one component, or
+\ we can break this View into a smaller, more maintainable and potentially Reusable Component, like search Component, side panel Component,and play area Component.
+
+Similarly in Side panel Component,we want to display one or more videos(Suggestions), potentially we can break up this Component into 
+smaller Components(playlist,general suggestion), and also to take us to the next level, each video that include an add to queue, save for latter etc. 
+Now we can reuse this queue Component in multiple places in the same app, or in an entirely different App. As you see, Angular embraces
+ Component based architecture, which allows us to work on smaller and more maintainable pieces that can also be reused in different places. 
+So once again, the Component encapsulates the Data the, HTML markup, and the Logic for a view, which is an
+area of the screen that the user sees. 
+
+Every application has a at least one component that we call App Component, or Root Component. A real world app, is essentially 
+a tree of Components, starting from the App Component, or the Root Component. 
+
+Module:
+
+Now, in Angular, we also have another concept called Modules. A Module, is a container for a group of related Components. Every Angular app has at least
+ one module which we call App Module. As your application grows, you may want to break that Module into smaller, more maintainable Modules. 
+
+So, in our Youtube example, we can potentially have Modules like comment Modules, which includes all the Components for displaying comments,
+ we can potentially have another Module like Menu Module, which includes a bunch of Components for visiting different 
+aspect of the application(Home,Explore,Subscription etc.).
+ 
+As an analogy think of a super market. In a super market, we have different aisles for different products. We have a section For fruits and vegetables,
+ we have another section for snacks, another for hardware, and so on. The bigger the super market, the more aisles we have. In a tiny grocery store, 
+we have probably one or two aisles at the most. 
+
+The same applies to our Angular apps. So if you're building a single application, we have only one Module, which we call the App module. But as our
+ application grows in functionality, we need to break that Module into smaller modules, with each module responsible for specific areas of our application.
+ In that Module we have a bunch of related Components.
+
+Creating a component:
+
+Basically there are 3 steps to use a component:
+1. Create a component
+2. Register it in a module
+3. Add an element in an HTML markup
+
+a. Steps to create a component:
+
+1. Create a TS file under the app foler and lets name it as "courses.component.ts". The name of this file need to have "component.ts" added to the end of it.
+
+2. Once we have created the file we need to create a class which can be used. So let me create a class by name CourseComponent.
+
+3. I need to add export so that this class can be used when imported in a different TS file.
+
+4. This is not yet a component until we use a decorator(annotation in Java) by the name "@Component". 
+Goes without saying that we need to import this from somewhere(@anuglar/core) which again takes some arguments:
+    1. selector: its a custom css selector that can be used as a tag inside an HTML document.
+    2. Template: A predefined HTML code that will be used as soon as this selector is used inside an HTML file
+
+Hence use the below as argument:
+ selector:'courses',
+ template:'<h5>MyCourses</h5>'    
+
+Now this is a component we have created. Lets move to the next step.
+
+
+b. Registering it in a module:
+
+1. This application now has only one module: app.module.ts
+2. Open up the file in the app folder.
+3. There is a class named "AppModule" which is decorated with @NgModule. This decorator contains some arguments.
+4. In the first argument (Declaration) provide the class name of the component we have created 'CoursesComponent' and import the file.
+
+
+c. Add an element in an HTML markup
+It's time to use this component in our application. To do that:
+1. Head over to app.component.html
+2. Remove everything
+3. add :
+
+<h1>Angular</h1>
+<courses></courses>
+
+Now serve the application.
+
+Generating Components using Angular CLI:
+We already saw how to create a component and use it in the application while is works without any trouble, but there are three major steps 
+and a lot of sub steps involved in it.
+
+If we miss any of the steps then it might either not register or display in our application. Hence in order to mitigate 
+this issue we can make use of the Angular CLI and ask it to create components for us. Below is how we do it.
+
+1. Open a terminal in VS code.
+2. type in the command : ng g c course
+    where ng stands for Angular
+    g for generate
+    c for component 
+    course is the name of my component
+As soon as this is done, we will find a folder inside the app folder which will have 4 files. 
+If you open the course.component.ts, we will find all our decorator, selector,template etc.
+It is also amazing that it automatically register it in app-module as well.
+
+
+Template:
+
+Inside the Template in courses.component.ts we can designed it in the way we want it. 
+For eg:
+Instead of passing a static content if we want to use a dynamic content in that case we can make use of String interpolation.
+
+Interpolation: it is a technique to bind the data with the view.
+
+Syntax: {{}}
+1. {{Title}}: It will look for a variable Title inside the class and replace it with the respective value of it
+2. {{getTitle()}}: It will look for a function getTitle() inside the class and replace it with the respective return data.
+3. If we want to provide any string then we can concatenate any string with the expression but then we have to put the string inside double quotes
+Eg: template:'<h2>{{"Title:" + getTitle()}}</h2>'
+
+Directive:
+*ngFor
+`<h2>{{"Title:" + getTitle()}}</h2>
+            <ul>
+                <li *ngFor="let course of courses">
+                    {{course}}
+                </li>
+            </ul>`
+
+Service:
+By using the above technique we can fetch the courses however in a real time application we would not be define the courses here. 
+Rather we will have to get it from a server. Hence instead of hardcoding inside the class we will need to call the HTTP endpoint to get the list of courses. 
+
+2 Options:
+
+1. We can add a logic to call the HTTP endpoint inside the component. 
+Some issues:
+    1. Well there is a potential problem with this. And that is by doing this we are bindging the data from the server to the class.
+ So if there is some sort of testing that needs to be done there either we have to test the data from the live server or have to change the source. 
+Which is not a good practice.
+    
+    2. Redundancy: If we want the list of courses else where in our application, then we will need to rewrite the logic to fetch the list of courses.
+    
+    3. It is not a good practice to write any logic inside a component except for presentation logic i.e. what happens when we select an item,
+ select on a drop down list etc.
+
+Hence the logic for fetching the data should be delegated to somewhere else. And that someplace is called as Service. Which brings to the
+ 2nd way of fetching the courses list from server.
+
+2. We are gonna define a serprate class called service where we add the logic to fetch the list of courses and then we can use this class in multiple places.
+- Create a file course.service.ts
+- Create a class and a function inside it and simply return the same courses as an array.
+
+
+export class CoursesService{
+
+    getCourses(){
+        return ['Physics','Chemistry','Biology'];
+    }
+
+}
+
+- Now we need to write a logic inside the course.component to get the data from the service layer.
+ title = "List of Courses";
+     courses;
+ constructor(){
+     let service = new CoursesService();
+     this.courses = service.getCourses();
+ }
+
+ However, there is a potential problem to this as well. What??????? Figure it out.
+
+
+ Well we are using the new CourseService() which again is tightly coupled with the function. Hence instead of we creating the object
+ we will ask Angular to do it for us. Below is how we can do it.
+ 1. title = "List of Courses";
+ courses;
+ constructor(service:CoursesService){
+     this.courses = service.getCourses();
+ }
+ 2. We will have to provide this class name CoursesServices inside the provider array in the AppModule.ts . Angular will provide 
+an instance of the CoursesService in singleton pattern
+
+ This is also called as Dependency Injection
+
+
+Generating services using Angular CLI:
+In our terminal we can run: ng g s email 
+ng stands for Angular
+g stands for generate
+s stands for services
+email is the name of the service
+
+Injectable(): By applying this we are telling Angular that this class is available to provide an instance to a different class. 
+This decorator marks a class as available to be provided and injected as a dependency.Having said that we didn't explicilty provide
+ this decorator for course.component.ts, because when we apply @Component decorator, it automatically adds this Decorator.
+
+
+Property Binding:
+Earlier we saw what is String interpolation where we are simply using a variable from our component directly inside two curly braces placed one inside another.
+Eg:
+template:'<h2>{{"Title:" + getTitle()}}</h2>'
+
+Well behind the scence Angular converts it into something called as Property Binding.
+
+Property Binding: The technique where Angular binds a property of DOM element (src in our above example) with the field/property of a
+ component is called as property binding
+Eg: <img [src]="imageUrl"/>
+
+In the above eg: "imageUrl" is a field inside the component class which contains the link to the image. now I am simply binding the src property
+ of the DOM with the value of this variable. For that I need to surrounds the DOM property(src) by a square bracket.
+
+Note: It only works one way. From Component to the DOM so if we have an input field from which I am taking some data from the user and wan
+t to bring the data to the component through property binding, it is not possible.
+
+I can conclude the note to: Any change in the component will affect the DOM property if we have used property binding for that DOM property
+ but any change in DOM property will not affect the Component
+
+Note2: The string interpolation internally is converted into property binding to work. If we want to convert the String interpollation to 
+property binding ourself we have to write something like below:
+<h2 [textContent]="title"></h2>
+The best place to wrtie the string interpollation would whereever I wanna add text between heading, paragraphs, divs and span.
+
+Attribute Binding:
+We already understood what is property binding, lets try to apply that to colspan in a table:
+<table>
+                    <tr>
+                        <td [colspan]="colspan"></td>
+                    </tr>
+                  </table>
+
+As soon as we run this, we will get an error saying can't bind the colspan since it is isn't a known property of td.
+wed
+To understand this lets understand the DOM a little closer:
+DOM is a model of objects that represent the structure of a document. It's essentially a tree of objects in memory. HTML on the other hand,
+ is a markup language that we use to represent DOM in text. So when your browser parses an HTML document, it creates a tree of objects in 
+memory that they refer to as the DOM. Now, we can also create this tree of objects programmatically, using vanilla JavaScript, so we don't 
+necessarily need HTML. But using HTML is far simpler.
+
+Now here's the key thing you need to know. Most of the attributes of HTML elements, have a one to one mapping for properties of DOM objects,
+ there are however a few exceptions. Colspan is an example of that. So when we parse this HTML markup, and create an actual DOM object for this td, 
+that DOM object does not have a property called colspan, and that's why we get this error. So colspan, isn't a known property of td. 
+
+For example, earlier we saw that we can bind to the text content property of H1. This is a property of a DOM object, and in HTML we don't have such an attribute. 
+
+<h1 [textContent]="sometext">
+
+Now when using property binding. You should remember that you're actually binding to a property of a DOM object, and not an attribute of an HTML element. 
+Once again, in 99% of the cases,these HTML attributes and DOM properties have a one to one mapping. But we have a few exceptions here and there. 
+
+So,here we're dealing with the colspan attribute. If you want to bind this attribute of the td element, you need a slightly different syntax. So,
+ in the square brackets, you need to prefix this attribute with "attr" which is short for attribute
+and then . this way you are telling Angular that we're targeting the colspan attribute of an HTMLelement, in this case, td. 
+
+
+Adding Bootstrap to Angular:
+We can add bootstap as an dependency to our project so that we can take advantage of all the classes provided by bootstrap.
+To install bootstrap below is the command:
+ npm install bootstrap --save
+npm install bootstrap: This will download the Bootstrap 
+--save flag will add bootstarp as a dependency
+
+Note: There is a folder by the name node_module in our project where all the dependencies for the project are present. 
+Now while saving the project to a disk we don't want to put this folder because it takes a lot of space instead we 
+have all the dependencies in the package.json which we will save to the disk. Now if anyone wants to run this project on their 
+respective machines then all they need to do is to go to the terminal npm install and all the libraries will be added to the project.
+
+Importing stylesheet into our style.css:
+Go to style.css: This is where we add global style for our application. In here we need to use import statement:
+@import "~bootstrap/dist/css/bootstrap.css";: This is the path from the node_module folder where we have the css from bootstrap, 
+this will allow me to use bootstrap provided classes, to test it lets add a button in the course.component.ts
+<button class="btn btn-primary">Save</button>
+
+To see if the global css is working lets add 20 px padding to our page.
+body{
+    padding:20px
+}
+
+Class Binding:
+There are times where we want to add additional class to an element based on some condition in such scenarios we use class binding.
+Eg: Lets say we want to apply active class to the button based on some condition. We can make use of the class binding which is a variation of property binding.
+
+<button class="btn btn-primary" [class.active]="">Save</button>
+
+Style Binding:
+Variation of property binding:
+Lets say we want to add some inline style to our above button based on some condition, we would do something like:
+<button [style.backgroundColor]="isActive?'blue':'white'">Save</button>
+
+Event Binding:
+So far we saw property binding and its variation like class binding,style binding & attribute binding to add something to the DOM, to display data.
+ In Angular we also have Event Binding to handle event raised from the DOM, like keystrokes,mouse movements, clicks and so on. 
+
+So here we have a simple button, and want to handle the click event of this button. So, Instead of square brackets we use parenthesis,and here
+ we add the name of the event like click,then we bind this to a method in our component. 
+<button class="btn btn-primary" (click)="onSave()">Save</button>
+
+Now some times we need to get access to the event object that was raised in the event handler. For example with mouse movements, 
+they even object will tell us the x and y position, if you want to get access to that event object, we need to add that as a parameter to the onSave(). 
+
+We can also configure the key strokes for this as well.
+ <input (keyup)="onKeyUp($event)"/>
+  
+  method:
+  onKeyUp($event){
+        if($event.keyCode==13) console.log("Enter was presses");
+        
+     }
+
+In Angular we have a better way of writting the above:
+
+<input (keyup.enter)="onKeyUp($event)"/>
+If we use the above then we don't need to pass the $event or add that if condition 
+
+This is also referred as event filtering
+
+Template Variables:
+Lets say we want to fetch the data from the input field we have added above, there are 2 ways of doing this as below:
+1. Simple way:
+ <input (keyup.enter)="onKeyUp($event)"/>
+Method:
+onKeyUp($event){
+    console.log($event.target.value);
+}
+
+2. Using the Template Variables:
+<input #email (keyup.enter)="onKeyUp(email.value)"/>
+
+method:
+ onKeyUp(userEmail){
+        console.log(userEmail);
+     }
+
+In this case #email is a variable which references the element. Now in the method I am passing text.
+ Hence while calling this method in the template we can pass email.value as parameter to the method. the .value will capture the data passed 
+and it will be printed to the console.
+
+
+Two Way binding: 
+Now this code that we wrote in the last session, it works, but we could do better. What I don't like about this implementation, 
+is passing this email parameter as argument around. In object oriented languages where we have the concept of objects, we shouldn't really
+ pass parameters around. Because an object encapsulates some data, and some behavior. So if an object or a class has all the data it needs,
+ we don't have to pass parameters around. This kind of code we have here is what we refer to as procedural programming. It's the kind of 
+code we used to write 30 years ago before we had object oriented programming languages. 
+
+So, imagine if we had a field here called email, then we wouldn't have to pass this email around. And here, we could simply log
+this.email. So we can see our method has no parameters, and this is cleaner, easier to read,easier to understand and easier to maintain.
+ Also going back to the definition of component in Angular, remember, a component encapsulates the data, the logic, and the HTML markup behind the view.
+
+Here, the email field is used to encapsulate the data, and the onKeyUp method represents the behavior or the logic behind this view. 
+And of course here's our HTML template. Now how do we get here? 
+
+Well first of all we don't need the template variable anymore. So delete, also we're not going to pass it to our method. So our code is a little bit cleaner. 
+
+Now, earlier you learned about property binding. I can make use of the property binding to tie some data with the value property of the DOM.
+
+Inside the class:
+ email="Jeigyanshu@gmail.com";    
+    onKeyUp(){
+        console.log(this.email);
+     }
+template: 
+<input [value]="email" (keyup.enter)="onKeyUp()"/>
+
+
+Now if I initialize the email with let's say Jeigyanshu@gmail.com, when we load this page, the input field should be populated with this email address.
+ However, if I change this to Jeigyanshu@yahoo.com, and press enter, now in the console, will still see Jeigyanshu@gmail.com. How?
+  Because with property binding, the direction of binding is from the component to the view. So if the value of this email field changes at 
+some point in the future, the view will be notified, and this input field will be automatically updated. 
+
+There are 2 ways we can fix this:
+1. <input [value]="email" (keyup.enter)="email=$event.target.value; onKeyUp()"/>
+
+We know $event has the value so on keyup.enter we will simply assign email to $event.target.value; and call the onKeyUp which will print the 
+email value in the console. This tough is not a good way of handling this. This is sort of a work around
+
+In angular exists a better ways of 2 way binding since we will need this feature repetatively.
+
+  <input [(ngModel)]="email" (keyup.enter)="onKeyUp()"/>
+
+export class CoursesComponent{
+    email="Jeigyanshu@gmail.com";    
+      onKeyUp(){
+        console.log(this.email);
+     }
+}
+
+What is ngModel: 
+Well the DOM objects are input DOM objects and it doesn't have a property called ngModel. This is something added to the DOM object by the Angular 
+Just like ngFor which is a directive. The directive are something we use to maniplute the DOM object. 
+Hence ngModel is a built in directive in Angular used to implement 2 way binding.
+
+Internally the ngModel would implement: <input [value]="email" (keyup.enter)="email=$event.target.value; onKeyUp()"/>
+
+Now if we run this we will get an error because the ngModel is present in the form modules. 
+
+Angular consits of different Modules: Core, Forms, Animations
+
+Not every application need all the models hence there is a chance that the form model is not configured to the project. If so we can configure it ourself. 
+1. Go to app.module.ts
+2. Follow the path @NgModule>imports: add FormsModule, needless to say you need to import it from:
+     import { FormsModule } from '@angular/forms';
+
+
+Pipes:
+Pipes are required to format the data: 
+
+Below are some built in pipes we can use:
+UpperCase
+LowerCase
+Decimal
+Currency
+Percent
+
+template:`
+        {{course.title | uppercase}}<br/>
+        {{course.rating | number:'1.2-2'}}<br/>
+        {{course.readers | number}}<br/>
+        {{course.price | currency:'INR'}}<br/>
+        {{course.releaseDate | date:'shortDate'}}<br/>
+        `
+  })
+
+export class CoursesComponent{
+   course={
+       title : "Game of thrones",
+       rating: 4.78456,
+       readers: 34454,
+       price:500,
+       releaseDate: new Date(2000,1,1)
+   }
+
+
+Custom Pipes:
+Create a custom pipe file with name summary.pipe.ts.
+
+import {Pipe,PipeTransform} from '@angular/core'
+
+
+@Pipe({
+    name:'summary'
+})
+export class SummaryPipe implements PipeTransform{
+    transform(value:number, args?:any){
+        if(!value)
+            return null;
+        
+            return value.substr(0,50)+'...';
+    }
+}
+
+Now we need to register it in app.module.ts
+
+Now the summary is ready to be used as a pipe in my component class:
+{{text | summary}}
+
+
+Excercise to create a Favorite component:{}
+
+Component API:
+Lets talk about adding more functionality to this Component. 
+
+Lets say we want to set the initial state of the star information from a server. Assume the server returns an object to the AppComponent which has the value of isFavorite variable in it. Now assume the value of the isFavorite is true and I want to set the star to be empty if the initial value is false. 
+
+Now I can't go to the <favorite></<favorite> tag in the app.component.html and add as below:
+<favorite [isFavorite]="post.isFavorite"></favorite>
+
+This will throw an error saying "Can't bind to 'isFavorite' since it isn't a known property of 'favorite'". The reason being in Angular template for us to use property-binding we need to define that property or that field as an input property. Inorder to make this work I need to tell Angular that this is an input property, we can do that by providing support to the  using @input
+
+Lets see this example: <img [src]="imageUrl"/>
+
+We are using "src" in the property binding because src is a known property of img. In other words this "src" property is an input into the DOM object. We use this "src" property to supply some data or supply some state.
+
+Now since <favorite> is a custom component just having isFavorite as a variable in that component will not make it as an INPUT property. To make it an input property we have to explicity inform Angular about the same. For this we have to add support for property(@input).
+
+
+Secondly lets say in the future I want to be notified every time a user clicks on this component i.e. to raise an event everytime there is a change in this component. For that we might have to write the code something as below:
+<favorite (change)="onFavoriteChange()"> 
+
+Once again I can't do that because <favorite> is not yet elegible to raise such events. For that we need to add support for it to raise events. Now lets see this example:
+<button (click)="raiseAnEvent()">
+
+In the above example the button element is eligible for raising the event because it is predefined and Angular knows about it but for <favorite> ahannn. We would need to add suport for this as well(@output).
+
+
+It won't be a mistake to say that to make component more useable we need to add support for input and output. With addition of @input property we can pass some state to the component and with @output properites  we can raise some events to be notified.
+
+The combination of input and output properties to a component is what we call as Component API.
+
+<favorite [isFavorite]="post.isFavorite" (change)="raiseAnEvent()"></favorite>
+Our Favorite component doesnt have a public API because it is missing input and output properties and hence we can't use property binding here.
+
+
+Input Property:
+As we learned above what is the usage of input property so lets see how to add it:
+
+There are 2 ways of doing it:
+1. 1st method
+    1. Go to the repective component class (favorite.component.ts) and import the class named as Input. 
+    2. Find the field isFavorite and annotate it with @Input()
+
+This will convert property to inputProperty.
+
+2. Alternate way:
+    1. We can remove the Input class from the import statement
+    2. Now under the styleurls, please declare an array with the name inputs and then pass as many as fields you want.
+
+
+Output Property:
+Now that we understood how to make a property input property and pass state into the component lets see how to raise an event.
+The procedure is ALMOST the same. Below are the step:
+1. Go to the repective component class (favorite.component.ts) and import the class named as Output.
+2. Now take an variable which has the exact name as of your event name and annotate it with @Output.
+3. Now we need to create an instance of EventEmmiter with this variable as the reference to EventEmmiter Object
+4. In the onClick method declared in the <favorite>  emit() the event which we can do by calling emit method in the eventemmiter 
+    this.change.emit();
+
+
+Apart from this we can also pass data through this event. Lets understand that:
+Inside the app.component.ts where we are handling the method to manage the change event we don't have any information about this change, we are simply loging a message to the console. Lets say we need more information on the change. In the case we can do the below:
+1. Inside the favorite.component.ts, where we are emmiting the event, we can pass some data as parameter to the function. 
+2. Now we need to pass a parameter to all the methods who are subscribing to this emit().
+3. Now finally we need to pass the $event to the (change)="onFavoriteChanged($event)" inside the app.component.html
+
+
+Template:
+2 Ways we have seen so far to define our template. 
+1. We can use an external file to define our HTMl code
+2. We can do that by using the template inside the annotation.
+
+
+Styles: 3 Ways of doing it:
+1. In a different file
+2. Inside @Component
+3. Inside the HTML file if at all we are using the HTML
+
+In all the above 3 cases the style of this star will never be leaked outside of the respective template
+
+
+ngContent:
+It is a custom tag by the Angular using which we can provide any sort of content to the area where this tag is mentioned. Here is an example:
+
+1. Lets create a component named panel.
+2. Once done, lets use the selector of this component inside the app.component.html.
+3. Lets use some BootStrap panels in the panel.component.ts
+
+Eg:
+
+inside my panel.component.html
+<div class="panel panel-default panel-primary">
+    <div class="panel panel-heading panel-primary">
+        <ng-content select=".myHeading"></ng-content>
+    </div>
+    <div class="panel panel-body panel-primary">
+        <ng-content select=".myBody"></ng-content>
+    </div>
+</div>
+
+app.component.html:
+<bootstrap-panel>
+    <div class="myHeading">Heading</div>
+    <div class="myBody">
+       <h1>Body</h1> 
+       <p>Some body here...</p>
+    </div>
+
+</bootstrap-panel>
+
+
+ngIf:
+If we want to show or hide a part of the page based on some condition then we use the *ngIf to evaluate the same.
+
+<div *ngIf="courses.length>0">
+    List of courses.
+</div>
+
+<div *ngIf="courses.length==0">
+    No courses yet
+</div>
+
+In the above case of the courses array doesn't have any value inside it then we would render "No courses yet". else it would retrun "List of courses".
+
+We can write the above code alternatively as below:
+<div *ngIf="courses.length>0; else noCourses">
+    List of courses.
+</div>
+
+<ng-template #noCourses>
+    No courses yet
+<ng-template>
+
+Here we are declaring the second div as a template and then assiging a template variable so that we can control it from somewhere.
+Now based on the condition in line 630, I can control the template #noCourses. Now what if we want to control both the section from a different section, that way the code is more readable and consistense as below:
+
+<div *ngIf="courses.length>0; then mitron else gadhon">    
+</div>
+
+<ng-template #mitron>
+    List of courses.
+</ng-template>
+
+<ng-template #gadhon>
+    No courses yet
+<ng-template>
+
+
+ngSwitchCase: 
+The ngSwitch is something similar to most of the switch statement we have in Java, atleast the functionality is the same. Based on a condition it show the part of the page and hides the rest. Below is a demonstration of the same:
+
+<ul class="nav nav-pills">
+    <li [class.active]="viewMode=='map'">
+    <a (click)="viewMode='map'">Map View</a></li>
+    <li [class.active]="viewMode=='list'"><a (click)="viewMode='list'">List View</a></li>
+</ul>
+
+<div [ngSwitch]="viewMode">
+    <div *ngSwitchCase="'map'">Map view content</div>
+    <div *ngSwitchCase="'list'">List view content</div>
+</div>
+
+ngClass:
+If I have one or more class binding going on in my component and the value of the same is determined dynamically in the run time then instead of binding the class multiple times, we can switch to ngClass:
+<span class="glyphicon " 
+
+[ngClass]="{
+    'glyphicon-star':isFavorite,
+    'glyphicon-star-empty': !isFavorite
+}"
+(click)="alter()"
+></span>
+
+ngStyle:
+Lets say I have the below code to represent the style of a button on my webpage:
+<button 
+[style.backgroundColor]="canSave ? 'blue':'gray'"
+[style.color]="canSave ? 'white':'black'"
+[style.fontWeight]="canSave ? 'bold':'normal'"
+
+>
+    Save
+</button>
+
+The value to the canSave is being given dynamically from the Component. This can be represented in a better way by providing ngStyle.
+
+Form:
+
+Template driven form:
+
+Validation: In Angular we have a class called FormControl. For each input field in our form we need to create an instance of FormControl. This will allow us to check the current 
+- VALUES stored in an input field.
+- If the input field has been TOUCHED.
+- If the input field has been UNTOUCHED.
+- If its DIRTY(means if the value is changed)
+- If its PRISTINE(mean value is not changed
+- weather it's VALID or not
+- If not valid what are the validation ERRORS.
+
+Similar to the control class we have a class for FormGroup which represent a group of controls in a form. Each form is essentially a control group because it contains atleast 1 control. Interstingly all the properties of FormControl as above is available with FormGroup as well. 
+
+Eg: we can ask a FormGroup if its valid or not and it returns if all the control in that group are valid.
+
+In a nutshell to add validation to a form, we need to add FormGroup to all the forms and FormControl to each input field in the form. This way we can keep track of each field and entire form as a whole.
+
+Lets see this for real.
+
+Lets create a form and see the ngModel object which contains all the above properties inside it. Depending upon our usage in the webpage the value of these properties changes its value.
+
+<form>
+    <div>
+        <label for="firstName">FirstName</label>
+        <input ngModel #myUsername="ngModel" (change)="logit(myUserName)" type="text" id="firstName" class="form-control">
+    </div>
+        <div>
+        <label for="comment">Comment</label>
+        <textarea ngmodel id="comment" class="form-control">
+    </div>
+
+    <button class="btn btn-primary">Save</button>
+</form>
+
+Now lets add validation using the ngIf that we have seen eariler:
+<form>
+
+<div>
+    <label for="firstName">FirstName</label>
+    <input required ngModel #myUsername="ngModel"  (change)="logIt(myUsername)" id="firstName"class="form-control"> 
+    <div class="alert alert-danger" *ngIf="myUsername.touched && !myUsername.valid">FirstName is required</div>
+</div>
+<div>
+    <label for="comment">Comments</label>
+    <textarea name="" id="comment" cols="30" rows="10" class="form-control"></textarea>
+</div>
+
+</form>
+
+
+Reactive form:
+HTML file:
+
+<form [formGroup]="form">
+    <div class="form-group">
+        <label for="username">Username</label>
+        <input 
+            formControlName="username"
+            id="username" 
+            type="text" 
+            class="form-control">
+    </div>
+<div class="alert alert-danger" *ngIf="form.get('username').touched && form.get('username').invalid">
+    <div *ngIf="form.get('username').errors.required">Username is required</div>
+    <div *ngIf="form.get('username').errors.minlength">Username Should be atleast 3 character</div>
+</div>
+
+
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input 
+            formControlName="password"
+            id="password" 
+            type="text" 
+            class="form-control">
+    </div>
+    <button class="btn btn-primary" type="submit">Sign Up</button>
+</form>
+
+
+Component:
+import { Component } from '@angular/core';
+import { FormGroup,FormControl,Validators } from '@angular/forms';
+
+@Component({
+  selector: 'signup-form',
+  templateUrl: './signup-form.component.html',
+  styleUrls: ['./signup-form.component.css']
+})
+export class SignupFormComponent {
+
+  form= new FormGroup({
+    'username': new FormControl('',[Validators.required,Validators.minLength(3)]),
+    'password': new FormControl('',Validators.required)
+  })
+
+
+
+}
+
+Consuming HTTP Service:
+
+import { HttpClient } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-post',
+  templateUrl: './post.component.html',
+  styleUrls: ['./post.component.css']
+})
+export class PostComponent {
+
+  posts:any
+constructor(http:HttpClient){
+
+  http.get('http://jsonplaceholder.typicode.com/posts ').subscribe(response=>{
+    this.posts=response
+  })
+}
+
+}
+
+HttpClientModule needs to be registered in imports
+
+
+Jsonpostholder.typicode.com/posts 
+
+Udemy
+Jeigyanshu.sarangi@gmail.com
+Jeigyanshu1
