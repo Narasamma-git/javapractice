@@ -1,0 +1,108 @@
+Java Functional Interfaces
+==========================
+
+An Interface that contains exactly one abstract method is known as functional interface. 
+It can have any number of default, static methods but can contain only one abstract method.
+ It can also declare methods of object class.
+
+Functional Interface is also known as Single Abstract Method Interfaces or SAM Interfaces. 
+It is a new feature in Java, which helps to achieve functional programming approach.
+
+
+A functional interface can have methods of object class. See in the following example.
+
+Invalid Functional Interface
+============================
+A functional interface can extends another interface only when it does not have any abstract method.
+
+STREAM API:
+===========
+Java 8 Stream
+Java provides a new additional package in Java 8 called java.util.stream. This package consists of classes, 
+interfaces and enum to allows functional-style operations on the elements. 
+You can use stream by importing java.util.stream package.
+
+Stream provides following features:
+
+Stream does not store elements. It simply conveys elements from a source such as a data structure, an array, or an I/O channel,
+ through a pipeline of computational operations.
+Stream is functional in nature. Operations performed on a stream does not modify it's source. For example, filtering a Stream obtained from a collection produces 
+a new Stream without the filtered elements, rather than removing elements from the source collection.
+Stream is lazy and evaluates code only when required.
+The elements of a stream are only visited once during the life of a stream. Like an Iterator, a new stream must be 
+generated to revisit the same elements of the source.
+You can use stream to filter, collect, print, and convert from one data structure to other etc. In the following examples,
+ we have apply various operations with the help of stream
+
+Stream<T> filter(Predicate<? super T> predicate)--->	It returns a stream consisting of the elements of this stream that match the given predicate.
+
+void forEach(Consumer<? super T> action)---->	It performs an action for each element of this stream.
+
+<R> Stream<R> map(Function<? super T,? extends R> mapper)-->	It returns a stream consisting of the results of applying the given
+								 function to the elements of this stream.
+
+
+Optional<T> max(Comparator<? super T> comparator)	It returns the maximum element of this stream according to the provided Comparator. 
+This is a special case of a reduction.
+
+Optional<T> min(Comparator<? super T> comparator)	It returns the minimum element of this stream according to the provided Comparator. 
+	
+ Filtering Collection by using Stream
+						This is a special case of a reduction.
+
+import java.util.*;  
+import java.util.stream.Collectors;  
+class Product{  
+    int id;  
+    String name;  
+    float price;  
+    public Product(int id, String name, float price) {  
+        this.id = id;  
+        this.name = name;  
+        this.price = price;  
+    }  
+}  
+public class JavaStreamExample {  
+    public static void main(String[] args) {  
+        List<Product> productsList = new ArrayList<Product>();  
+        //Adding Products  
+        productsList.add(new Product(1,"HP Laptop",25000f));  
+        productsList.add(new Product(2,"Dell Laptop",30000f));  
+        productsList.add(new Product(3,"Lenevo Laptop",28000f));  
+        productsList.add(new Product(4,"Sony Laptop",28000f));  
+        productsList.add(new Product(5,"Apple Laptop",90000f));  
+        List<Float> productPriceList2 =productsList.stream()  
+                                     .filter(p -> p.price > 30000)// filtering data  
+                                     .map(p->p.price)        // fetching price  
+                                     .collect(Collectors.toList()); // collecting as list  
+        System.out.println(productPriceList2);  
+    }  
+}
+
+
+reduce() Method in Collection
+=============================
+This method takes a sequence of input elements and combines them into a single summary result by repeated operation.
+ For example, finding the sum of numbers, or accumulating elements into a list
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

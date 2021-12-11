@@ -1,0 +1,126 @@
+reduce() Method in Collection
+This method takes a sequence of input elements and combines them into a single summary result by repeated operation. For example, f
+inding the sum of numbers, or accumulating elements into a list
+
+
+Default method:
+The concept of default method is used to define a method with default implementation.
+ You can override default method also to provide more specific implementation for the method.
+
+interface Sayable{  
+    // Default method   
+    default void say(){  
+        System.out.println("Hello, this is default method");  
+    }  
+    // Abstract method  
+    void sayMore(String msg);  
+}  
+public class DefaultMethods implements Sayable{  
+    public void sayMore(String msg){        // implementing abstract method   
+        System.out.println(msg);  
+    }  
+    public static void main(String[] args) {  
+        DefaultMethods dm = new DefaultMethods();  
+        dm.say();   // calling default method  
+        dm.sayMore("Work is worship");  // calling abstract method  
+  
+    }  
+}  
+
+Static Methods inside Java 8 Interface
+You can also define static methods inside the interface. Static methods are used to define utility methods. 
+The following example explain, how to implement static method in interface?
+
+interface Sayable{    
+    // default method    
+    default void say(){    
+        System.out.println("Hello, this is default method");    
+    }    
+    // Abstract method    
+    void sayMore(String msg);    
+    // static method    
+    static void sayLouder(String msg){    
+        System.out.println(msg);    
+    }    
+}    
+public class DefaultMethods implements Sayable{    
+    public void sayMore(String msg){     // implementing abstract method    
+        System.out.println(msg);    
+    }    
+    public static void main(String[] args) {    
+        DefaultMethods dm = new DefaultMethods();    
+        dm.say();                       // calling default method    
+        dm.sayMore("Work is worship");      // calling abstract method    
+        Sayable.sayLouder("Helloooo...");   // calling static method    
+    }    
+}    
+Output:
+
+Hello there
+Work is worship
+Helloooo...
+
+		Abstract Class vs Java 8 Interface
+
+
+After having default and static methods inside the interface, we think about the need of abstract class in Java. 
+An interface and an abstract class is almost similar except that you can create constructor in 
+the abstract class whereas you can't do this in interface.
+
+Java forEach loop
+Java provides a new method forEach() to iterate the elements. It is defined in Iterable and Stream interface.
+ It is a default method defined in the Iterable interface. Collection classes which extends Iterable interface can use forEach loop to iterate elements.
+
+This method takes a single parameter which is a functional interface. So, you can pass lambda expression as an argument.
+
+
+    public static void main(String[] args) {  
+        List<String> gamesList = new ArrayList<String>();  
+        gamesList.add("Football");  
+        gamesList.add("Cricket");  
+        gamesList.add("Chess");  
+        gamesList.add("Hocky");  
+        System.out.println("------------Iterating by passing lambda expression--------------");  
+        gamesList.forEach(games -> System.out.println(games));  
+          
+    }  
+
+
+Java Collectors
+Collectors is a final class that extends Object class. It provides reduction operations, such as accumulating elements into collections, 
+summarizing elements according to various criteria, etc.
+
+Java Collectors class provides various methods to deal with elements
+
+Java Optional Class
+Java introduced a new class Optional in jdk8. It is a public final class and used to deal with NullPointerException in Java application. You must import java.util package to use this class.
+ It provides methods which are used to check the presence of value for particular variable.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

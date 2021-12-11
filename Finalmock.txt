@@ -1,0 +1,33 @@
+package com.testyantra.customexception;
+public Class MyException extends Exception{
+String message;
+public MyException(String message){
+this.message=message;
+}
+
+
+}
+
+package com.testyantra.customexception;
+public Class MyarraList {
+ArrayList list=new ArrayList(); 
+
+list.add(10);
+list.add(20);
+
+list.add(70);
+list.add(500);
+
+list.add(200);
+
+Iterator itr=list.iterator();
+while(itr.hasNext()){
+
+
+
+}
+
+}
+
+
+dburl=mainprotocol:subprotocol://domainname+port:db username 

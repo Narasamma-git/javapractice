@@ -1,0 +1,202 @@
+		Java Method References
+		======================
+
+Java provides a new feature called method reference in Java 8.
+ Method reference is used to refer method of functional interface. 
+It is compact and easy form of lambda expression. Each time when you are using lambda expression to just referring a method, 
+you can replace your lambda expression with method reference. 
+In this tutorial, we are explaining method reference concept in detail.
+
+Types of Method References
+There are following types of method references in java:
+
+1. Reference to a static method.
+2. Reference to an instance method.
+3. Reference to a constructor
+
+1) Reference to a Static Method
+
+You can refer to static method defined in the class. Following is the syntax and example
+ which describe the process of referring static method in Java.
+
+Syntax
+
+ContainingClass::staticMethodName
+
+In the following example, we have defined a functional interface and referring a static method to it's functional method say().
+
+STATIC METHOD REFERENCE
+
+package com.technoelevate.methodreferences;
+@FunctionalInterface
+public interface MethodInterface {
+	void say(String message);
+	//void sayable();
+
+}
+
+package com.technoelevate.methodreferences;
+
+public class MethodRefeClass {
+	
+	 public static void display(String msg) { 
+		 System.out.println("Hi"+msg+"How was the day");
+	  }
+//	 public static void saySomething() {
+//		 System.out.println("this is static reference");
+//	 }
+	public static void main(String[] args) {
+	
+		MethodInterface m=MethodRefeClass::display;
+		//m.say("HI nayana how are you today");
+		m.say("Nayana");
+	}
+
+}
+
+HiNayanaHow was the day
+
+================================
+package com.technoelevate.methodreferences;
+
+public class MethodRefeClass {
+	
+	 public static void display(String msg) { 
+		 System.out.println("Hi"+msg+"How was the day");
+	  }
+//	 public static void saySomething() {
+//		 System.out.println("this is static reference");
+//	 }
+	public static void main(String[] args) {
+		MethodRefeClass.display("Narasamma");
+		MethodInterface m=MethodRefeClass::display;
+		//m.say("HI nayana how are you today");
+		m.say("Nayana");
+
+		
+	}
+
+}
+ output:
+HiNarasammaHow was the day
+HiNayanaHow was the day
+
+
+	 public static void display() { 
+		 System.out.println("Hi How was the day");
+	  }
+	MethodInterface m=MethodRefeClass::display;
+		//m.say("HI nayana how are you today");
+		m.say("Nayana");
+
+OUTput:compileTime Error
+
+		the type methodreferenceClass does not define dispaly(String) that is applicable here
+we have provide String as input in dispaly() 
+----------------------------------------========================------------------------------------
+In the following example, we are using predefined functional interface Runnable to refer static method.
+
+package com.technoelevate.methodreferences;
+
+public class MethodRefeClass {
+	
+	 public static void display() { 
+		 System.out.println("Thread is running");
+	  }
+//	 public static void saySomething() {
+//		 System.out.println("this is static reference");
+//	 }
+	public static void main(String[] args) {
+
+	//	Runnable r=MethodRefeClass::display;
+		//or
+		Thread t=new Thread(MethodRefeClass::display);
+		//Thread t=new Thread(r);
+		t.start();
+		
+	}
+	
+}
+
+=============================================================================================================
+You can also override static methods by referring methods. In the following example,
+ we have defined and overloaded three add methods.
+================================================================================================================
+
+	2) REFERENCE TO AN INSTANCE METHOD
+
+like static methods, you can refer instance methods also. In the following example,
+ we are describing the process of referring the instance method.
+
+
+interface Sayable{  
+    void say();  
+}  
+public class InstanceMethodReference {  
+    public void saySomething(){  
+        System.out.println("Hello, this is non-static method.");  
+    }  
+    public static void main(String[] args) {  
+        InstanceMethodReference methodReference = new InstanceMethodReference(); // Creating object  
+        // Referring non-static method using reference  
+            Sayable sayable = methodReference::saySomething;  
+        // Calling interface method  
+            sayable.say();  
+            // Referring non-static method using anonymous object  
+            Sayable sayable2 = new InstanceMethodReference()::saySomething; // You can use anonymous object also  
+            // Calling interface method  
+            sayable2.say();  
+    }  
+}
+output:
+Hello, this is non-static method.
+Hello, this is non-static method.
+
+example2
+
+
+public class InstanceMethodReference2 {  
+    public void printnMsg(){  
+        System.out.println("Hello, this is instance method");  
+    }  
+    public static void main(String[] args) {  
+    Thread t2=new Thread(new InstanceMethodReference2()::printnMsg);  
+        t2.start();       
+    }  
+}  
+output:
+
+Hello, this is instance method
+
+
+
+3) Reference to a Constructor
+You can refer a constructor by using the new keyword. Here, we are referring constructor
+ with the help of functional interface.
+ SYSNTAX:
+
+ClassName::new  
+
+interface Messageable{  
+    Message getMessage(String msg);  
+}  
+class Message{  
+    Message(String msg){  
+        System.out.print(msg);  
+    }  
+}  
+public class ConstructorReference {  
+    public static void main(String[] args) {  
+        Messageable hello = Message::new;  
+        hello.getMessage("Hello");  
+    }  
+}
+output:
+Hello
+
+
+
+
+
+
+

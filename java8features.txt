@@ -1,0 +1,346 @@
+								JAVA 8 FEATURES
+
+	1) Lambda expressions
+	2) Method references
+	3) Functional interfaces
+	4) Stream API
+	5) Default methods
+	6) Static methods in interface
+	7)  ForEach() method
+	8) Optional class
+	9) Collectors class
+	10)  Concurrency Enhancements
+	11)  JDBC Enhancements
+
+	12) Parallel Array Sorting,
+	13) Type and Repating Annotations
+	14) IO Enhancements
+	15) Base64 Encode Decode
+	16)  Nashorn JavaScript Engine
+
+
+
+	FUNCTIONAL INTERFACE
+An interface which has only one abstract method is called functional interface.
+Java provides an anotation @FunctionalInterface, which is used to declare an interface as functional interface
+
+LAMDA EXPRESSION: (argument-list) -> {body}  
+
+		1. Lambda expression helps us to write our code in functional style. 
+		2. It provides a clear and concise way to implement SAM interface(Single Abstract Method) by using an expression.
+ 		3. It is very useful in collection library in which it helps to iterate, filter and extract data.
+		4. The Lambda expression is used to provide the implementation of an interface which has functional interface. 
+		5. It saves a lot of code. In case of lambda expression, we don't need to define the method again for providing the implementation. 
+		Here, we just write the implementation code.
+
+Why use Lambda Expression
+
+	1. To provide the implementation of Functional interface.
+	2. Less coding.
+
+Java lambda expression is consisted of three components.
+
+1) Argument-list: It can be empty or non-empty as well.
+
+2) Arrow-token: It is used to link arguments-list and body of expression.
+
+3) Body: It contains expressions and statements for lambda expression.
+
+MyFunctionalInterface.java
+==========================
+package com.technoelevate.lambdaexpression;
+@FunctionalInterface
+public interface MyFunctionalInterface {
+public void display(int a);
+}
+
+LambdaClass.java
+=================
+package com.technoelevate.lambdaexpression2;
+import com.technoelevate.lambdaexpression.MyFunctionalInterface;
+
+public class LambdaClass {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		MyFunctionalInterface mf=(int a)->{
+			System.out.println("this is implementation for functional interface"+a); 
+		};
+		mf.display(10);
+	}
+
+}
+In Java lambda expression, if there is only one statement, you may or may not use return keyword. 
+You must use return keyword when lambda expression contains multiple statements.
+
+
+LAMBDA FOREACH:
+===============
+
+package com.technoelevate.lambdaexpression;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class LamdaForeachLoop {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+List<String> l=new ArrayList();
+l.add("nayana");
+l.add("narasamma");
+l.add("Manjula");
+l.add("Rachana");
+l.add("Ragini");
+l.add("Asma");
+l.forEach(
+	(n)->{
+	      System.out.println(n);
+	     }
+	    );
+	}
+
+}
+
+example2
+package com.technoelevate.lambdaexpression;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class LamdaForeachLoop {
+	int a;
+	String s;
+	
+	public LamdaForeachLoop(int a, String s) {
+		this.a = a;
+		this.s = s;
+	}
+
+	public static void main(String[] args) {
+		LamdaForeachLoop lf1=new LamdaForeachLoop(10,"Narasamma");
+		LamdaForeachLoop lf2=new LamdaForeachLoop(20,"Basavaraj");
+		LamdaForeachLoop lf3=new LamdaForeachLoop(30,"Vinutha");
+		LamdaForeachLoop lf4=new LamdaForeachLoop(40,"Nayana");
+		List<LamdaForeachLoop> list=new ArrayList();
+		list.add(lf1);
+		list.add(lf2);
+		list.add(lf3);
+		list.add(lf4);
+		
+		list.forEach((l)->{
+			System.out.println(l.a+" "+l.s);
+		});
+	}
+}
+LAMBDAEXPRESSION WITH MULTIPLE PARAMETERS
+
+Myfunctionalinterface.java
+
+package com.technoelevate.lambdaexpression;
+@FunctionalInterface
+public interface MyFunctionalInterface {
+public int display(int a,int b);
+}
+
+lambdaclass.java
+
+package com.technoelevate.lambdaexpression2;
+import com.technoelevate.lambdaexpression.MyFunctionalInterface;
+
+public class LambdaClass {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		MyFunctionalInterface mf=(a,b)->{
+			int c=100;
+			int d=200;
+			int ff=a+b+c+d;
+
+			return ff;
+		};
+		System.out.println(mf.display(10,20));
+	}
+
+}
+
+		CREATING THREAD USING LAMBDA EXPRESSION BY IMPLEMENTING RUNNABLE INTERFACE
+
+package com.lambdaexpression.createthread;
+public class LambdaThread {
+	public static void main(String[] args) {
+		Runnable r=()->{
+			System.out.println("overriding run method");
+		};
+		Thread t=new Thread(r);
+		t.run();
+		System.out.println(Thread.currentThread());
+		
+	}
+
+}
+LAMBDA EXRESSION FOT FILTER USING COMPARATOR
+
+package com.lambdaexpression.createthread;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+public class LambdaExpressionForSorting {
+
+	public static void main(String[] args) {
+	Product p1=new Product("Hp",50000,"red");
+	Product p2=new Product("Dell",40000,"black");
+	Product p3=new Product("Asus",40000,"grey");
+
+	List<Product> list=new ArrayList();
+	list.add(p1);
+	list.add(p2);
+	list.add(p3);
+	
+	Collections.sort(list,(pp1,pp2)->{
+		return pp1.name.compareTo(pp2.name);
+		
+	});
+	
+	list.forEach((n)->{
+		System.out.println(n.name);
+		
+	});
+	
+	}
+
+}
+
+SORTING USING COLLECTIONS.SORT()
+
+package com.lambdaexpression.createthread;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+public class ArraySortingByLambda {
+	public static void main(String[] args) {
+		
+		List<Integer> list=new ArrayList();
+		list.add(500);
+		list.add(100);
+		list.add(300);
+		list.add(50);
+		list.add(1000);
+		Collections.sort(list);
+		
+		for(Integer i:list){
+			System.out.println(i);
+		}
+		
+	}
+
+}
+  LAMBDA EXPRESSION FOR FILTER
+
+package com.lambdaexpression.createthread;
+
+public class Product {
+	String name;
+	int price;
+	String color;
+	public Product(String name, int price, String color) {
+		super();
+		this.name = name;
+		this.price = price;
+		this.color = color;
+	}
+	
+
+}
+
+package com.lambdaexpression.createthread;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Stream;
+
+public class FilterUsingStreamApi {
+
+	public static void main(String[] args) {
+s
+Product p1=new Product("Hp",5000,"blue");
+Product p2=new Product("Dell",15000,"black");
+Product p3=new Product("Asus",5000,"gray");
+Product p4=new Product("",5000,"blue");
+List<Product> list=new ArrayList();
+list.add(p1);
+list.add(p2);
+list.add(p3);
+list.add(p4);
+
+Stream<Product> stream=list.stream().filter(p->p.price>10000);
+
+
+stream.forEach((n)->{
+	System.out.println(n.price+" "+n.name+" "+n.color);
+});
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
