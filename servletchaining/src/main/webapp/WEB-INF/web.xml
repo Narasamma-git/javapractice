@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" version="4.0">
+  <display-name>servletchaining</display-name>
+  <welcome-file-list>
+    <welcome-file>form.html</welcome-file>
+  </welcome-file-list>
+  <servlet>
+  <servlet-name>CoockieServlet</servlet-name>
+  <servlet-class>com.testyantra.servletchaining.MyCookie</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  <servlet-name>CoockieServlet</servlet-name>
+  <url-pattern>/cs</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  <servlet-name>SecondServlet</servlet-name>
+  <servlet-class>com.testyantra.servletchaining.SecondServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  <servlet-name>SecondServlet</servlet-name>
+  <url-pattern>/ss</url-pattern>
+  </servlet-mapping>
+  
+  
+</web-app>
