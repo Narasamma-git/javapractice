@@ -1,0 +1,29 @@
+{
+	"id": 19,
+	"name": "Jeigyanshu",
+	"email": "Jeigyanshu.Sarangi@gmail.com",
+	"dob": 1630708912932,
+	"password": "Jeigyanshu30",
+	"address": [
+		{
+			"houseNo": 30,
+			"street": "Narayani Temple Street",
+			"landmark": "Carmel School",
+			"state": "Odisha",
+			"country": "India"
+		},
+		{
+			"houseNo": 0,
+			"street": null,
+			"landmark": null,
+			"state": null,
+			"country": null
+		}
+	],
+	"info": {
+		"maritalStatus": true,
+		"phno": 939219283,
+		"gender": "Male",
+		"aadharNumber": 222192934
+	}
+}

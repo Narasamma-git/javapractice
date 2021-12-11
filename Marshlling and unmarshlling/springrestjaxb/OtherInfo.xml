@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<userData>
+    <id>30</id>
+    <name>Jeigyanshu</name>
+    <email>Jeigyanshu@technoelevate.com</email>
+    <dob>2021-09-04T03:34:55.163+05:30</dob>
+    <Address-Info>
+        <address>
+            <country>India</country>
+            <houseNo>30</houseNo>
+            <landmark>The Banglore Hospital</landmark>
+            <state>Odisha</state>
+            <street>Narayani Temple Street</street>
+        </address>
+        <address>
+            <country>India</country>
+            <houseNo>30</houseNo>
+            <landmark>Carmel School</landmark>
+        </address>
+    </Address-Info>
+    <info>
+        <maritalStatus>true</maritalStatus>
+        <phno>1234567890</phno>
+        <gender>Male</gender>
+        <aadharNumber>123456789</aadharNumber>
+    </info>
+</userData>
